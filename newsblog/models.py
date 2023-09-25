@@ -1,9 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from tinymce.models import HTMLField
 
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
+
+
+
 
 
 class BlogPosts(models.Model):
@@ -11,7 +15,7 @@ class BlogPosts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
     slug = models.SlugField(max_length=255, unique=True)
     updated_time = models.DateTimeField(auto_now=True)
-    content = models.TextField()
+    content = HTMLField()
     main_image = CloudinaryField('image', default='placeholder')
     snippet_text = models.TextField(blank=True)
     created_time = models.DateTimeField(auto_now_add=True)
