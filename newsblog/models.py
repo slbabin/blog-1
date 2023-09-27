@@ -19,7 +19,7 @@ class BlogPost(models.Model):
     main_image = CloudinaryField('image', default='placeholder')
     snippet_text = models.TextField(blank=True)
     created_time = models.DateTimeField(auto_now_add=True)
-    publish_status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='blog_likes', blank=True)
 
     class Meta:
